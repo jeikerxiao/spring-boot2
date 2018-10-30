@@ -18,6 +18,6 @@ public class HelloServiceImpl implements HelloService {
 
     @Override
     public String sayHello(String name) {
-        return "Hello, " + name + " (from Spring Boot)";
+        return "Hello, " + name + " (from Spring Boot Dubbo Provider)";
     }
 }
