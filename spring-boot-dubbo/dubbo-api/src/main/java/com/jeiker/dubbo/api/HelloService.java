@@ -5,5 +5,8 @@ package com.jeiker.dubbo.api;
  * User: jeikerxiao
  * Date: 2018/10/30 上午11:59
  */
-public interface DemoService {
+public interface HelloService {
+
+    String sayHello(String name);
+
 }

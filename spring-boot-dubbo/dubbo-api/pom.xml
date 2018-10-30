@@ -10,9 +10,8 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.jeiker</groupId>
     <artifactId>dubbo-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${dubbo.api.version}</version>
     <packaging>jar</packaging>
 
     <name>Dubbo Spring Boot Samples API</name>
