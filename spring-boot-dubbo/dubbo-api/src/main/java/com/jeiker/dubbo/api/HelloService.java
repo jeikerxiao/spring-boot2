@@ -8,5 +8,4 @@ package com.jeiker.dubbo.api;
 public interface HelloService {
 
     String sayHello(String name);
-
 }
