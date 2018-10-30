@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @Reference(version = "${demo.service.version}",
-            application = "${dubbo.application.id}",
-            url = "dubbo://localhost:12345")
+            application = "${dubbo.application.id}"
+//            ,
+//            url = "dubbo://localhost:12345",
+//            registry = "zookeeper://192.168.234.97:2181"
+//            url = "dubbo://192.168.234.97:2181"
+    )
     private HelloService helloService;
 
     @RequestMapping("/sayHello")
