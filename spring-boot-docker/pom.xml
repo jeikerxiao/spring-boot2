@@ -73,16 +73,16 @@
                     <imageTags>
                         <imageTag>${project.version}</imageTag>
                         <!--可以指定多个标签-->
-                        <imageTag>latest</imageTag>
+                        <!--<imageTag>latest</imageTag>-->
                     </imageTags>
                     <!--覆盖已存在的标签 镜像-->
                     <forceTags>true</forceTags>
                     <!--使用pom 配置-->
-                    <baseImage>java:8</baseImage>
-                    <entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>
+                    <!--<baseImage>java:8</baseImage>-->
+                    <!--<entryPoint>["nohup","java","-jar","/${project.build.finalName}.jar"]</entryPoint>-->
                     <!--使用pom 配置 END-->
                     <!--使用 Dockerfile-->
-                    <!--<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>-->
+                    <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                     <!--使用 Dockerfile  END-->
                     <resources>
                         <resource>
