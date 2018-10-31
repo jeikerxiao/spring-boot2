@@ -14,6 +14,11 @@ import java.util.Map;
 @RestController
 public class HelloController {
 
+    @RequestMapping("")
+    public Map<String, String> hi() {
+        return Collections.singletonMap("message", "Hi!");
+    }
+
     @RequestMapping("/hello")
     public Map<String, String> hello() {
         return Collections.singletonMap("message", "Hello World!");

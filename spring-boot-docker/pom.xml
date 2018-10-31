@@ -5,7 +5,7 @@
 
     <groupId>com.jeiker</groupId>
     <artifactId>spring-boot-docker</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <name>spring-boot-docker</name>
@@ -48,6 +48,53 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <executions>
+                    <!--执行 mvn package 时 自动 执行 mvn docker:build-->
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!--推送到私有仓库-->
+                    <registryUrl>http://192.168.234.97:5000</registryUrl>
+                    <dockerHost>http://192.168.234.97:2375</dockerHost>
+                    <imageName>192.168.234.97:5000/jeiker/${project.artifactId}</imageName>
+                    <!--本地-->
+                    <!--<imageName>jeiker/spring-boot-docker</imageName>-->
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                        <!--可以指定多个标签-->
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <!--覆盖已存在的标签 镜像-->
+                    <forceTags>true</forceTags>
+                    <!--使用pom 配置-->
+                    <baseImage>java:8</baseImage>
+                    <entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>
+                    <!--使用pom 配置 END-->
+                    <!--使用 Dockerfile-->
+                    <!--<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>-->
+                    <!--使用 Dockerfile  END-->
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+
+            </plugin>
+
         </plugins>
     </build>
 
