@@ -79,7 +79,7 @@
                     <forceTags>true</forceTags>
                     <!--使用pom 配置-->
                     <!--<baseImage>java:8</baseImage>-->
-                    <!--<entryPoint>["nohup","java","-jar","/${project.build.finalName}.jar"]</entryPoint>-->
+                    <!--<entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>-->
                     <!--使用pom 配置 END-->
                     <!--使用 Dockerfile-->
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
@@ -92,7 +92,6 @@
                         </resource>
                     </resources>
                 </configuration>
-
             </plugin>
 
         </plugins>
