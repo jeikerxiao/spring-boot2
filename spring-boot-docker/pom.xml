@@ -65,9 +65,9 @@
                 </executions>
                 <configuration>
                     <!--推送到私有仓库-->
-                    <registryUrl>http://192.168.234.97:5000</registryUrl>
-                    <dockerHost>http://192.168.234.97:2375</dockerHost>
-                    <imageName>192.168.234.97:5000/jeiker/${project.artifactId}</imageName>
+                    <registryUrl>http://118.178.189.178:5000</registryUrl>
+                    <dockerHost>http://118.178.189.178:2375</dockerHost>
+                    <imageName>118.178.189.178:5000/jeiker/${project.artifactId}</imageName>
                     <!--本地-->
                     <!--<imageName>jeiker/spring-boot-docker</imageName>-->
                     <imageTags>
