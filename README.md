@@ -31,6 +31,7 @@ spring-boot 2.0 study
 # 3.日志系统
 
 * [spring-boot-logback](https://github.com/jeikerxiao/spring-boot2/tree/master/spring-boot-logback): logback使用
+* [spring-boot-lo4j](https://github.com/jeikerxiao/spring-boot2/tree/master/spring-boot-lo4j): 集成lo4j
 * [spring-boot-lo4j2](https://github.com/jeikerxiao/spring-boot2/tree/master/spring-boot-lo4j2): 集成lo4j2
 
 
