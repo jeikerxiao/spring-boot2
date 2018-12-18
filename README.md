@@ -44,7 +44,7 @@ spring-boot 2.0 study
 # 5.消息服务
 
 * [spring-boot-activemq](https://github.com/jeikerxiao/spring-boot2/tree/master/spring-boot-activemq)：使用 Activemq 消息队列服务
-* [spring-boot-ramq](https://github.com/jeikerxiao/spring-boot2/tree/master/spring-boot-ramq)：使用 RabbitMQ 消息队列服务
+* [spring-boot-rabbitmq](https://github.com/jeikerxiao/spring-boot2/tree/master/spring-boot-rabbitmq)：使用 RabbitMQ 消息队列服务
 * [spring-boot-kafka](https://github.com/jeikerxiao/spring-boot2/tree/master/spring-boot-kafka)：使用 Kafka 消息队列服务
 
 
