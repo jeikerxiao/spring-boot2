@@ -17,6 +17,7 @@ import org.springframework.shell.standard.ShellOption;
 public class GreetingApp {
 
     /**
+     * say-hi Xiao
      * 表示方法sayHi是可以在命令行运行的命令。
      */
     @ShellMethod("Say hi")
