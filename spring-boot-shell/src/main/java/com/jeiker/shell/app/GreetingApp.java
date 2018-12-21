@@ -20,7 +20,7 @@ public class GreetingApp {
      * say-hi Xiao
      * 表示方法sayHi是可以在命令行运行的命令。
      */
-    @ShellMethod("Say hi")
+    @ShellMethod("say-hi")
     public String sayHi(String name) {
         return String.format("Hi %s", name);
     }
