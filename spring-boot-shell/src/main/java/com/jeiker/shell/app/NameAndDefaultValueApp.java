@@ -28,7 +28,7 @@ public class NameAndDefaultValueApp {
      * @param numbers
      * @return
      */
-    @ShellMethod("Echo3")
+    @ShellMethod("echo3")
     public String echo3(@ShellOption(arity = 3) int[] numbers) {
         return String.format("a = %d, b = %d, c = %d", numbers[0], numbers[1], numbers[2]);
     }

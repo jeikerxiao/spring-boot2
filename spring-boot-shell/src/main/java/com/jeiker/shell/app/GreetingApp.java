@@ -33,7 +33,7 @@ public class GreetingApp {
      * @param c
      * @return
      */
-    @ShellMethod("Echo1")
+    @ShellMethod("echo1")
     public String echo1(int a, int b, int c) {
         return String.format("a = %d, b = %d, c = %d", a, b, c);
     }
@@ -46,7 +46,7 @@ public class GreetingApp {
      * @param c
      * @return
      */
-    @ShellMethod("Echo2")
+    @ShellMethod("echo2")
     public String echo2(int a, @ShellOption("--boy") int b, int c) {
         return String.format("a = %d, b = %d, c = %d", a, b, c);
     }

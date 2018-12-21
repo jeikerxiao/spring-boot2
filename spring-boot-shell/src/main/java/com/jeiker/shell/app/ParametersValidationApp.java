@@ -16,12 +16,12 @@ import javax.validation.constraints.Size;
 public class ParametersValidationApp {
 
     /**
-     * string-size 34123
+     * string-size jeikerxiao
      *
      * @param name
      * @return
      */
-    @ShellMethod("String size")
+    @ShellMethod("string-size")
     public String stringSize(@Size(min = 3, max = 16) String name) {
         return String.format("Your name is %s", name);
     }
@@ -32,7 +32,7 @@ public class ParametersValidationApp {
      * @param number
      * @return
      */
-    @ShellMethod("Number range")
+    @ShellMethod("number-range")
     public String numberRange(@Min(10) @Max(100) int number) {
         return String.format("The number is %s", number);
     }
