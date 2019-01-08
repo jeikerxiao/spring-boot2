@@ -10,21 +10,39 @@ Spring Boot 使用 Task 来实现定时任务
 
 使用三种参数方式，新建三个定时任务。
 
+在下面的定时任务中，在方法上使用`@Scheduled`注解来设置任务的执行时间，并且使用三种属性配置方式：
+
+* cron：通过表达式来配置任务执行时间
+* fixedRate：定义一个按一定频率执行的定时任务
+* fixedDelay：定义一个按一定频率执行的定时任务，与上面不同的是，改属性可以配合initialDelay， 定义该任务延迟执行时间。
+
+
+
 ```java
 @Slf4j
 @Component
 public class ScheduledService {
 
+    /**
+     * cron：通过表达式来配置任务执行时间
+     */
     @Scheduled(cron = "0/5 * * * * *")
     public void scheduled() {
         log.info("==>{} 使用cron。", System.currentTimeMillis());
     }
 
+    /**
+     * fixedRate：定义一个按一定频率执行的定时任务
+     */
     @Scheduled(fixedRate = 5000)
     public void scheduled1() {
         log.info("==>{} 使用fixedRate。", System.currentTimeMillis());
     }
 
+    /**
+     * fixedDelay：定义一个按一定频率执行的定时任务，
+     * 与上面不同的是，改属性可以配合 initialDelay， 定义该任务延迟执行时间。
+     */
     @Scheduled(fixedDelay = 5000)
     public void scheduled2() {
         log.info("==>{} 使用fixedDelay。", System.currentTimeMillis());
