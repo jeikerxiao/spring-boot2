@@ -1,6 +1,6 @@
 # spring-boot-quartz
 
-Spring Boot 配合 Quartz。
+Spring Boot 整合 Quartz 实现定时任务。
 
 ## 说明
 
