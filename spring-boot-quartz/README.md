@@ -90,7 +90,7 @@ public class QuartzConfig {
 
 查看输出日志
 
-```
+```java
 2019-01-08 19:00:57.997  [eduler_Worker-5] com.jeiker.quartz.service.QuartzService  : 1546945257997 - quartz task.
 2019-01-08 19:01:07.995  [eduler_Worker-6] com.jeiker.quartz.service.QuartzService  : 1546945267995 - quartz task.
 2019-01-08 19:01:17.997  [eduler_Worker-7] com.jeiker.quartz.service.QuartzService  : 1546945277997 - quartz task.
