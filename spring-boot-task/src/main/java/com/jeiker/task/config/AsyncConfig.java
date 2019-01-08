@@ -8,7 +8,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.Executor;
 
 /**
- * Description: spring-boot2
+ * Description: 定时任务线程池
  * User: jeikerxiao
  * Date: 2019/1/8 5:35 PM
  */

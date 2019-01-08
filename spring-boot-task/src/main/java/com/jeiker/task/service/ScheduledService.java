@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
- * Description: spring-boot2
+ * Description: 定时任务
  * User: jeikerxiao
  * Date: 2019/1/8 5:20 PM
  */
