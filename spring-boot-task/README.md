@@ -72,12 +72,12 @@ public class SpringBootTaskApplication {
 
 
 ```java
-2019-01-08 17:24:58.207  INFO 40773 --- [   scheduling-1] c.jeiker.task.service.ScheduledService   : ==>1546939498207 使用fixedRate。
-2019-01-08 17:24:58.208  INFO 40773 --- [   scheduling-1] c.jeiker.task.service.ScheduledService   : ==>1546939498208 使用fixedDelay。
-2019-01-08 17:25:00.004  INFO 40773 --- [   scheduling-1] c.jeiker.task.service.ScheduledService   : ==>1546939500004 使用cron。
-2019-01-08 17:25:03.208  INFO 40773 --- [   scheduling-1] c.jeiker.task.service.ScheduledService   : ==>1546939503208 使用fixedRate。
-2019-01-08 17:25:03.209  INFO 40773 --- [   scheduling-1] c.jeiker.task.service.ScheduledService   : ==>1546939503209 使用fixedDelay。
-2019-01-08 17:25:05.002  INFO 40773 --- [   scheduling-1] c.jeiker.task.service.ScheduledService   : ==>1546939505002 使用cron。
+2019-01-08 17:24:58.207  [   scheduling-1] c.jeiker.task.service.ScheduledService   : ==>1546939498207 使用fixedRate。
+2019-01-08 17:24:58.208  [   scheduling-1] c.jeiker.task.service.ScheduledService   : ==>1546939498208 使用fixedDelay。
+2019-01-08 17:25:00.004  [   scheduling-1] c.jeiker.task.service.ScheduledService   : ==>1546939500004 使用cron。
+2019-01-08 17:25:03.208  [   scheduling-1] c.jeiker.task.service.ScheduledService   : ==>1546939503208 使用fixedRate。
+2019-01-08 17:25:03.209  [   scheduling-1] c.jeiker.task.service.ScheduledService   : ==>1546939503209 使用fixedDelay。
+2019-01-08 17:25:05.002  [   scheduling-1] c.jeiker.task.service.ScheduledService   : ==>1546939505002 使用cron。
 ```
 
 ## 多线程方式
@@ -146,16 +146,16 @@ public class ScheduledService {
 发现输出是在不同线程中执行：
 
 ```java
-2019-01-08 18:20:50.006  INFO 40949 --- [ taskExecutor-6] c.jeiker.task.service.ScheduledService   : ==>1546942850006 使用cron。
-2019-01-08 18:20:53.714  INFO 40949 --- [ taskExecutor-7] c.jeiker.task.service.ScheduledService   : ==>1546942853714 使用fixedRate。
-2019-01-08 18:20:53.716  INFO 40949 --- [ taskExecutor-8] c.jeiker.task.service.ScheduledService   : ==>1546942853716 使用fixedDelay。
-2019-01-08 18:20:55.003  INFO 40949 --- [ taskExecutor-9] c.jeiker.task.service.ScheduledService   : ==>1546942855003 使用cron。
-2019-01-08 18:20:58.711  INFO 40949 --- [taskExecutor-10] c.jeiker.task.service.ScheduledService   : ==>1546942858711 使用fixedRate。
-2019-01-08 18:20:58.717  INFO 40949 --- [ taskExecutor-1] c.jeiker.task.service.ScheduledService   : ==>1546942858717 使用fixedDelay。
-2019-01-08 18:21:00.005  INFO 40949 --- [ taskExecutor-2] c.jeiker.task.service.ScheduledService   : ==>1546942860005 使用cron。
-2019-01-08 18:21:03.711  INFO 40949 --- [ taskExecutor-3] c.jeiker.task.service.ScheduledService   : ==>1546942863711 使用fixedRate。
-2019-01-08 18:21:03.719  INFO 40949 --- [ taskExecutor-4] c.jeiker.task.service.ScheduledService   : ==>1546942863719 使用fixedDelay。
-2019-01-08 18:21:05.003  INFO 40949 --- [ taskExecutor-5] c.jeiker.task.service.ScheduledService   : ==>1546942865003 使用cron。
-2019-01-08 18:21:08.714  INFO 40949 --- [ taskExecutor-6] c.jeiker.task.service.ScheduledService   : ==>1546942868714 使用fixedRate。
-2019-01-08 18:21:08.721  INFO 40949 --- [ taskExecutor-7] c.jeiker.task.service.ScheduledService   : ==>1546942868721 使用fixedDelay。
+2019-01-08 18:20:50.006  [ taskExecutor-6] c.jeiker.task.service.ScheduledService   : ==>1546942850006 使用cron。
+2019-01-08 18:20:53.714  [ taskExecutor-7] c.jeiker.task.service.ScheduledService   : ==>1546942853714 使用fixedRate。
+2019-01-08 18:20:53.716  [ taskExecutor-8] c.jeiker.task.service.ScheduledService   : ==>1546942853716 使用fixedDelay。
+2019-01-08 18:20:55.003  [ taskExecutor-9] c.jeiker.task.service.ScheduledService   : ==>1546942855003 使用cron。
+2019-01-08 18:20:58.711  [taskExecutor-10] c.jeiker.task.service.ScheduledService   : ==>1546942858711 使用fixedRate。
+2019-01-08 18:20:58.717  [ taskExecutor-1] c.jeiker.task.service.ScheduledService   : ==>1546942858717 使用fixedDelay。
+2019-01-08 18:21:00.005  [ taskExecutor-2] c.jeiker.task.service.ScheduledService   : ==>1546942860005 使用cron。
+2019-01-08 18:21:03.711  [ taskExecutor-3] c.jeiker.task.service.ScheduledService   : ==>1546942863711 使用fixedRate。
+2019-01-08 18:21:03.719  [ taskExecutor-4] c.jeiker.task.service.ScheduledService   : ==>1546942863719 使用fixedDelay。
+2019-01-08 18:21:05.003  [ taskExecutor-5] c.jeiker.task.service.ScheduledService   : ==>1546942865003 使用cron。
+2019-01-08 18:21:08.714  [ taskExecutor-6] c.jeiker.task.service.ScheduledService   : ==>1546942868714 使用fixedRate。
+2019-01-08 18:21:08.721  [ taskExecutor-7] c.jeiker.task.service.ScheduledService   : ==>1546942868721 使用fixedDelay。
 ```
