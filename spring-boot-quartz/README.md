@@ -1,139 +1,100 @@
+# spring-boot-quartz
 
+Spring Boot 配合 Quartz。
 
-# spring-boot-activemq
+## 说明
 
-Spring Boot 配合 ActiveMQ。
+### 添加依赖
 
-# 说明
+如果SpringBoot版本是2.0.0以后的，则在spring-boot-starter中已经包含了quart的依赖，
+则可以直接使用spring-boot-starter-quartz依赖：
 
-网上偷来两张说明图片。
-
-消息队列模式 (demo1示例)
-
-![image](../images/activemq1.png)
-
-
-
-发布、订阅模式 (demo2示例)
-
-![image](../images/activemq2.png)
-
-## 项目配置
-
-
-application.properties文件中配置 ActiveMQ:
-
-```java
-
-spring.activemq.broker-url=tcp://192.168.235.32:61616
-spring.activemq.user=admin
-spring.activemq.password=admin
-spring.activemq.pool.enabled=false
-#spring.jms.pub-sub-domain=true
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-quartz</artifactId>
+</dependency>
 ```
 
-## 消息队列模式
+如果是1.5.9则要使用以下添加依赖：
 
-demo1
+```xml
+<dependency>
+  <groupId>org.quartz-scheduler</groupId>
+  <artifactId>quartz</artifactId>
+  <version>2.3.0</version>
+</dependency>
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-context-support</artifactId>
+</dependency>
+```
 
-### 生产者
+### 创建任务类 QuartzService
+
+该类主要是继承了QuartzJobBean
 
 ```java
+@Slf4j
+public class QuartzService extends QuartzJobBean {
 
-@Service
-public class Producer {
-
-    @Resource
-    private JmsMessagingTemplate jmsMessagingTemplate;
-
-    public void sendMsg(String destinationName, String message) {
-        System.out.println("============>>>>> 发送queue消息 " + message);
-        Destination destination = new ActiveMQQueue(destinationName);
-        jmsMessagingTemplate.convertAndSend(destination, message);
+    /**
+     * 执行定时任务
+     *
+     * @param jobExecutionContext
+     */
+    @Override
+    protected void executeInternal(JobExecutionContext jobExecutionContext) {
+        log.info("{} - quartz task.", System.currentTimeMillis());
     }
 }
 ```
 
-### 消费者
+
+### 创建配置类 QuartzConfig
 
 ```java
-@Service
-public class Consumer {
+@Configuration
+public class QuartzConfig {
 
-    @JmsListener(destination = "test.queue")
-    public void receiveMsg(String text) {
-        System.out.println("<<<<<<============ 收到消息： " + text);
+    /**
+     * job任务
+     * @return
+     */
+    @Bean
+    public JobDetail teatQuartzDetail() {
+        return JobBuilder.newJob(QuartzService.class)
+                .withIdentity("quartzService")
+                .storeDurably()
+                .build();
+    }
+
+    @Bean
+    public Trigger testQuartzTrigger() {
+        // 设置时间周期单位秒（10秒）
+        // 永久执行
+        SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
+                .withIntervalInSeconds(10)
+                .repeatForever();
+        // 触发
+        return TriggerBuilder.newTrigger()
+                .forJob(teatQuartzDetail())
+                .withIdentity("quartzService")
+                .withSchedule(scheduleBuilder)
+                .build();
     }
 }
-
 ```
 
-## 发布、订阅模式
+### 启动项目
 
-demo2
-
-### 发布者
-
-```java
-
-@Service
-public class Publisher {
-
-    @Resource
-    private JmsMessagingTemplate jmsMessagingTemplate;
-
-    public void publish(String destinationName, String message) {
-        Destination destination = new ActiveMQTopic(destinationName);
-        System.out.println("============>>>>> 发布topic消息 " + message);
-        jmsMessagingTemplate.convertAndSend(destination, message);
-    }
-}
+查看输出日志
 
 ```
-
-### 订阅者
-
-```java
-
-@Service
-public class Subscriber {
-
-    @JmsListener(destination = "test.topic", containerFactory = "myJmsContainerFactory")
-    public void subscribe(String text) {
-        System.out.println("===========<<<<<<<<收到订阅的消息" + text);
-    }
-}
-
+2019-01-08 19:00:57.997  [eduler_Worker-5] com.jeiker.quartz.service.QuartzService  : 1546945257997 - quartz task.
+2019-01-08 19:01:07.995  [eduler_Worker-6] com.jeiker.quartz.service.QuartzService  : 1546945267995 - quartz task.
+2019-01-08 19:01:17.997  [eduler_Worker-7] com.jeiker.quartz.service.QuartzService  : 1546945277997 - quartz task.
+2019-01-08 19:01:27.994  [eduler_Worker-8] com.jeiker.quartz.service.QuartzService  : 1546945287994 - quartz task.
+2019-01-08 19:01:37.992  [eduler_Worker-9] com.jeiker.quartz.service.QuartzService  : 1546945297992 - quartz task.
+2019-01-08 19:01:47.994  [duler_Worker-10] com.jeiker.quartz.service.QuartzService  : 1546945307994 - quartz task.
 ```
-
-
-## 运行测试用例
-
-```java
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class SpringBootActivemqApplicationTests {
-
-	@Resource
-	private Producer producer;
-	@Resource
-	private Publisher publisher;
-
-	@Test
-	public void testQueue() {
-		for (int i = 0; i < 10; i++) {
-			producer.sendMsg("test.queue", "Queue Message " + i);
-		}
-	}
-
-	@Test
-	public void testTopic() {
-		for (int i = 0; i < 10; i++) {
-			publisher.publish("test.topic", "Topic Message " + i);
-		}
-	}
-}
-```
-
-
