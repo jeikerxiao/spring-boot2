@@ -1,13 +1,17 @@
 package com.jeiker.batch.step;
 
 import com.jeiker.batch.dto.CommandDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.file.LineMapper;
+import org.springframework.stereotype.Service;
 
 /**
  * Description: 1.读数据：CommandLineMapper将文件每行数据转换成程序CommandDTO对象
  * User: jeikerxiao
  * Date: 2019/1/9 9:23 AM
  */
+@Service
+@Slf4j
 public class CommandLineMapper implements LineMapper<CommandDTO> {
 
     @Override
