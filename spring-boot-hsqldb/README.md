@@ -4,6 +4,17 @@ Spring Boot 整合 hsqldb (内存数据库)。
 
 # 说明
 
+||H2|Derby|HSQLDB|MySQL|PostgreSQL|
+|:--|:--|:--|:--|:--|:--|
+|Pure Java(纯Java编写)|Yes|Yes|Yes|No|No
+|Memory Mode（支持内存模式）|Yes|Yes|Yes|No|No
+|Encrypted Database（支持数据库加密）|Yes|Yes|Yes|No|No
+|ODBC Driver（支持ODBC驱动）|Yes|No|No|Yes|Yes
+|Fulltext Search（支持全文搜索）|Yes|No|No|Yes|Yes
+|Multi Version Concurrency（支持多版本并发控制）|Yes|No|Yes|Yes|Yes
+|Footprint (jar/dll size)|（体积）|~1 MB|~2 MB|~1 MB|~4 MB|~6 MB
+
+
 使用HSQLDB和H2代码基本一样是一样的，只是在添加依赖的时候不一样，修改pom.xml文件，去掉或者注释掉h2的依赖，引入hsqldb的依赖：
 
 ```xml
