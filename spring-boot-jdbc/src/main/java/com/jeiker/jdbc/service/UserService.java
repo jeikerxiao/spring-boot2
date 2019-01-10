@@ -49,4 +49,12 @@ public interface UserService {
      */
     Boolean deleteUser(Long userId);
 
+    /**
+     * 修改用户
+     *
+     * @param user
+     * @return
+     */
+    Boolean updateUser(User user);
+
 }
