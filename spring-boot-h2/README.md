@@ -1,10 +1,32 @@
 # spring-boot-h2
 
-Spring Boot 配合 H2。
+Spring Boot 整合 H2（内存数据库）。
 
 # 说明
 
+使用H2和HSQLDB代码基本一样是一样的，只是在添加依赖的时候不一样，修改pom.xml文件，去掉或者注释掉H2的依赖，引入HSQLDB的依赖：
 
+```xml
+<dependency>
+	<groupId>com.h2database</groupId>
+	<artifactId>h2</artifactId>
+	<scope>runtime</scope>
+</dependency>
+```
+
+启动日志时：
+
+H2对应信息：
+
+```java
+org.hibernate.dialect.Dialect  : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect；
+```
+
+HSQL对应信息：
+
+```java
+org.hibernate.dialect.Dialect  : HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect；
+```
 
 # 测试
 

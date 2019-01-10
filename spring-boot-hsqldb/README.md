@@ -1,139 +1,114 @@
+# spring-boot-hsqldb
 
-
-# spring-boot-activemq
-
-Spring Boot 配合 ActiveMQ。
+Spring Boot 整合 hsqldb (内存数据库)。
 
 # 说明
 
-网上偷来两张说明图片。
+使用HSQLDB和H2代码基本一样是一样的，只是在添加依赖的时候不一样，修改pom.xml文件，去掉或者注释掉h2的依赖，引入hsqldb的依赖：
 
-消息队列模式 (demo1示例)
-
-![image](../images/activemq1.png)
-
-
-
-发布、订阅模式 (demo2示例)
-
-![image](../images/activemq2.png)
-
-## 项目配置
-
-
-application.properties文件中配置 ActiveMQ:
-
-```java
-
-spring.activemq.broker-url=tcp://192.168.235.32:61616
-spring.activemq.user=admin
-spring.activemq.password=admin
-spring.activemq.pool.enabled=false
-#spring.jms.pub-sub-domain=true
+```xml
+<dependency>
+	<groupId>org.hsqldb</groupId>
+	<artifactId>hsqldb</artifactId>
+	<scope>runtime</scope>
+</dependency>
 ```
 
-## 消息队列模式
+启动日志时：
 
-demo1
-
-### 生产者
+H2对应信息：
 
 ```java
+org.hibernate.dialect.Dialect  : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect；
+```
 
-@Service
-public class Producer {
+HSQL对应信息：
 
-    @Resource
-    private JmsMessagingTemplate jmsMessagingTemplate;
+```java
+org.hibernate.dialect.Dialect  : HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect；
+```
 
-    public void sendMsg(String destinationName, String message) {
-        System.out.println("============>>>>> 发送queue消息 " + message);
-        Destination destination = new ActiveMQQueue(destinationName);
-        jmsMessagingTemplate.convertAndSend(destination, message);
+# 测试
+
+## 添加用户
+
+POST http://localhost:8080/user
+
+```javascript
+{
+	"age":23,
+	"name":"Tom"
+}
+```
+
+GET http://localhost:8080/user
+
+```javascript
+{
+    "result": [
+        {
+            "id": 1,
+            "age": 11,
+            "name": "xiao"
+        },
+        {
+            "id": 2,
+            "age": 20,
+            "name": "jeiker"
+        },
+        {
+            "id": 3,
+            "age": 23,
+            "name": "Tom"
+        }
+    ]
+}
+```
+
+GET http://localhost:8080/user/name/xiao
+
+```javascript
+{
+    "result": {
+        "id": 2,
+        "age": 20,
+        "name": "jeiker"
     }
 }
 ```
 
-### 消费者
+GET http://localhost:8080/user/id/2
 
-```java
-@Service
-public class Consumer {
-
-    @JmsListener(destination = "test.queue")
-    public void receiveMsg(String text) {
-        System.out.println("<<<<<<============ 收到消息： " + text);
+```javascript
+{
+    "result": {
+        "id": 1,
+        "age": 11,
+        "name": "xiao"
     }
 }
-
 ```
 
-## 发布、订阅模式
+DELETE http://localhost:8080/user/3
 
-demo2
+然后再查看
 
-### 发布者
+GET http://localhost:8080/user
 
-```java
-
-@Service
-public class Publisher {
-
-    @Resource
-    private JmsMessagingTemplate jmsMessagingTemplate;
-
-    public void publish(String destinationName, String message) {
-        Destination destination = new ActiveMQTopic(destinationName);
-        System.out.println("============>>>>> 发布topic消息 " + message);
-        jmsMessagingTemplate.convertAndSend(destination, message);
-    }
-}
-
-```
-
-### 订阅者
-
-```java
-
-@Service
-public class Subscriber {
-
-    @JmsListener(destination = "test.topic", containerFactory = "myJmsContainerFactory")
-    public void subscribe(String text) {
-        System.out.println("===========<<<<<<<<收到订阅的消息" + text);
-    }
-}
-
-```
-
-
-## 运行测试用例
-
-```java
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class SpringBootActivemqApplicationTests {
-
-	@Resource
-	private Producer producer;
-	@Resource
-	private Publisher publisher;
-
-	@Test
-	public void testQueue() {
-		for (int i = 0; i < 10; i++) {
-			producer.sendMsg("test.queue", "Queue Message " + i);
-		}
-	}
-
-	@Test
-	public void testTopic() {
-		for (int i = 0; i < 10; i++) {
-			publisher.publish("test.topic", "Topic Message " + i);
-		}
-	}
+```javascript
+{
+    "result": [
+        {
+            "id": 1,
+            "age": 11,
+            "name": "xiao"
+        },
+        {
+            "id": 2,
+            "age": 20,
+            "name": "jeiker"
+        }
+    ]
 }
 ```
-
 
