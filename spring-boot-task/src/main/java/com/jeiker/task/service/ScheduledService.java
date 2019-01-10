@@ -24,7 +24,8 @@ public class ScheduledService {
     }
 
     /**
-     * fixedRate：定义一个按一定频率执行的定时任务
+     * fixedRate：指定两次任务执行的时间间隔(毫秒)，
+     * 此时间间隔指的是，前一个任务开始与下一个任务开始的间隔
      */
     @Async
     @Scheduled(fixedRate = 5000)
@@ -33,8 +34,8 @@ public class ScheduledService {
     }
 
     /**
-     * fixedDelay：定义一个按一定频率执行的定时任务，
-     * 与上面不同的是，改属性可以配合 initialDelay， 定义该任务延迟执行时间。
+     * fixedDelay：指定两次任务执行的时间间隔(毫秒)，
+     * 此时间间隔指的是，前一次任务结束与下一个任务开始的间隔
      */
     @Async
     @Scheduled(fixedDelay = 5000)
