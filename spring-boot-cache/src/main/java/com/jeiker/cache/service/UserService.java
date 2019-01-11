@@ -49,4 +49,9 @@ public interface UserService {
      */
     Boolean deleteUser(Long userId);
 
+    /**
+     * 清空缓存
+     */
+    void deleteCache();
+
 }

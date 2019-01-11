@@ -65,4 +65,10 @@ public class UserController {
         Boolean result = userService.deleteUser(userId);
         return Collections.singletonMap("result", result);
     }
+
+    @DeleteMapping("/cache")
+    public Map<String, String> deleteCache() {
+        userService.deleteCache();
+        return Collections.singletonMap("result", "clear cache success");
+    }
 }

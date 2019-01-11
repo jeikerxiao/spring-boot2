@@ -5,6 +5,9 @@ import com.jeiker.cache.dao.UserRepository;
 import com.jeiker.cache.model.User;
 import com.jeiker.cache.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +24,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
+    @CachePut(value = "user", key = "#user.id")
     public Boolean saveUser(User user) {
         userRepository.save(user);
         return true;
@@ -34,6 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = "user", key = "#userId")
     public User getUser(Long userId) {
         User user = userRepository.findById(userId).orElse(null);
         return user;
@@ -49,9 +54,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CacheEvict(value = "user", key = "#userId")
     public Boolean deleteUser(Long userId) {
         userRepository.deleteById(userId);
         return true;
+    }
+
+    @Override
+    @CacheEvict(value = "user", allEntries = true)
+    public void deleteCache() {
+
     }
 
 }
