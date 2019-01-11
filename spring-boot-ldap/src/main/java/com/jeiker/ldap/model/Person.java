@@ -1,6 +1,7 @@
 package com.jeiker.ldap.model;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.ldap.odm.annotations.Attribute;
 import org.springframework.ldap.odm.annotations.DnAttribute;
 import org.springframework.ldap.odm.annotations.Entry;
@@ -14,6 +15,7 @@ import javax.naming.Name;
  * Date: 2019/1/11 2:03 PM
  */
 @Data
+@ToString
 @Entry(base = "ou=people,dc=didispace,dc=com", objectClasses = "inetOrgPerson")
 public class Person {
 
