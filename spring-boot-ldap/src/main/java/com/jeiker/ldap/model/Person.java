@@ -16,7 +16,7 @@ import javax.naming.Name;
  */
 @Data
 @ToString
-@Entry(base = "ou=people,dc=didispace,dc=com", objectClasses = "inetOrgPerson")
+@Entry(base = "ou=people,dc=demo,dc=com", objectClasses = "inetOrgPerson")
 public class Person {
 
     @Id
