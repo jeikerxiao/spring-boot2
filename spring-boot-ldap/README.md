@@ -58,3 +58,53 @@ Windows AD域的用户、权限管理应该是微软公司使用LDAP存储了一
 
 Active Directory先实现一个LDAP服务器，然后自己先用这个LDAP服务器实现了自己的一个具体应用。
 
+# 代码
+
+## pom
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-ldap</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>com.unboundid</groupId>
+    <artifactId>unboundid-ldapsdk</artifactId>
+    <scope>test</scope>
+</dependency>
+```
+
+`spring-boot-starter-data-ldap`是Spring Boot封装的对LDAP自动化配置的实现，它是基于spring-data-ldap来对LDAP服务端进行具体操作的。
+
+`unboundid-ldapsdk`主要是为了在这里使用嵌入式的LDAP服务端来进行测试操作，所以scope设置为了test，实际应用中，我们通常会连接真实的、独立部署的LDAP服务器，所以不需要此项依赖。
+
+## 数据文件
+
+在`src/test/resources`目录下创建`ldap-server.ldif`文件，用来存储LDAP服务端的基础数据，以备后面的程序访问之用。
+
+
+```properties
+dn: dc=didispace,dc=com
+objectClass: top
+objectClass: domain
+
+dn: ou=people,dc=didispace,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: people
+
+dn: uid=ben,ou=people,dc=didispace,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: didi
+sn: zhaiyongchao
+uid: didi
+userPassword: {SHA}nFCebWjxfaLbHHG1Qk5UU4trbvQ=
+```
+
+
+这里创建了一个基础用户，真实姓名为zhaiyongchao,常用名didi，在后面的程序中，我们会来读取这些信息。更多内容解释大家可以深入学习LDAP来理解，这里不做过多的讲解。
+
