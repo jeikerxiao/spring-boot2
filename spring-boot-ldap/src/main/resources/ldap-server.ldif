@@ -1,13 +1,13 @@
-dn: dc=domain,dc=com
+dn: dc=demo,dc=com
 objectClass: top
 objectClass: domain
 
-dn: ou=people,dc=domain,dc=com
+dn: ou=people,dc=demo,dc=com
 objectclass: top
 objectclass: organizationalUnit
 ou: people
 
-dn: uid=user1,ou=people,dc=domain,dc=com
+dn: uid=user1,ou=people,dc=demo,dc=com
 objectclass: top
 objectclass: person
 objectclass: organizationalPerson
