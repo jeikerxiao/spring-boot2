@@ -16,7 +16,7 @@ public interface UserService {
      *
      * @param user
      */
-    Boolean saveUser(User user);
+    User saveUser(User user);
 
     /**
      * 查询所有用户

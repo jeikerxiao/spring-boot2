@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.jeiker.cache.dao.UserRepository;
 import com.jeiker.cache.model.User;
 import com.jeiker.cache.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -18,16 +19,18 @@ import java.util.List;
  * Date: 2019/1/9 2:29 PM
  */
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
-    @CachePut(value = "user", key = "#user.id")
-    public Boolean saveUser(User user) {
+    @CachePut(value = "user", key = "#user.name")
+    public User saveUser(User user) {
         userRepository.save(user);
-        return true;
+        User saveUser = getUser(user.getId());
+        return saveUser;
     }
 
     @Override
@@ -45,6 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = "user", key = "#name")
     public User getUserByName(String name) {
         List<User> userList = userRepository.findByName(name);
         if (userList.isEmpty()) {

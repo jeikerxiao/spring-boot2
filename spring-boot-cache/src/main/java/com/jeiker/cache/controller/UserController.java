@@ -26,7 +26,7 @@ public class UserController {
      */
     @PostMapping("")
     public Map<String, Object> save(@RequestBody User user) {
-        Boolean result = userService.saveUser(user);
+        User result = userService.saveUser(user);
         return Collections.singletonMap("result", result);
     }
 
