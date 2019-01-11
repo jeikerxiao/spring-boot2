@@ -1,18 +1,18 @@
-dn: dc=didispace,dc=com
+dn: dc=domain,dc=com
 objectClass: top
 objectClass: domain
 
-dn: ou=people,dc=didispace,dc=com
+dn: ou=people,dc=domain,dc=com
 objectclass: top
 objectclass: organizationalUnit
 ou: people
 
-dn: uid=ben,ou=people,dc=didispace,dc=com
+dn: uid=user1,ou=people,dc=domain,dc=com
 objectclass: top
 objectclass: person
 objectclass: organizationalPerson
 objectclass: inetOrgPerson
-cn: didi
-sn: zhaiyongchao
-uid: didi
+cn: jeiker
+sn: xiao
+uid: jeikerid
 userPassword: {SHA}nFCebWjxfaLbHHG1Qk5UU4trbvQ=
