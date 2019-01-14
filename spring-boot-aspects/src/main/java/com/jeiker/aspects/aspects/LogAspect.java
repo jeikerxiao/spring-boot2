@@ -99,6 +99,7 @@ public class LogAspect {
             log.info("@Around - 方法环绕proceed，结果是 :" + o);
             return o;
         } catch (Throwable e) {
+            log.info("@Around - 方法环绕exception:{}", e.getMessage());
             e.printStackTrace();
             return null;
         }

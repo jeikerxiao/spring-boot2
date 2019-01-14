@@ -31,4 +31,10 @@ public class UserController {
         return Collections.singletonMap("result", userList);
     }
 
+    @GetMapping("/error")
+    public Object error() {
+        log.info("error() - 方法体执行");
+        return 1 / 0;
+    }
+
 }

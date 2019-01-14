@@ -77,7 +77,7 @@ public void before(){}
 public void before(){}
 ```
 
-3） this：用于向通知方法中传入代理对象的引用。 
+3） this：用于向通知方法中传入代理对象的引用。 是指定类型的实例。
 
 ```java
 @Before(“before() && this(proxy)”) 
@@ -86,7 +86,7 @@ public void beforeAdvide(JoinPoint point, Object proxy){
 }
 ```
  
-4）target：用于向通知方法中传入目标对象的引用。 
+4）target：用于向通知方法中传入目标对象的引用。 是指定类型的实例。
 
 ```java
 @Before(“before() && target(target) 
