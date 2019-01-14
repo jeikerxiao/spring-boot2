@@ -35,3 +35,4 @@ aop全称Aspect Oriented Programming，面向切面，AOP主要实现的目的�
 * 织入（Weaving）：把切面连接到其它的应用程序类型或者对象上，并创建一个被通知的对象。这些可以在编译时（例如使用AspectJ编译器），类加载时和运行时完成。Spring和其他纯Java AOP框架一样，在运行时完成织入。
    
 其中重要的名词有：切面，切入点
+
