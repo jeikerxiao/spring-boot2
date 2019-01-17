@@ -27,7 +27,6 @@ public class UserController {
         data.setName("用户信息数据");
         //添加表头
         List<String> titles = new ArrayList();
-        //for(String title: excelInfo.getNames())
         titles.add("ID");
         titles.add("年龄");
         titles.add("姓名");
