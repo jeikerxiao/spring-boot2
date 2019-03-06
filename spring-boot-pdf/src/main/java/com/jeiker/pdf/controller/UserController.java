@@ -41,12 +41,14 @@ public class UserController {
         Document document = new Document();
         PdfWriter.getInstance(document, response.getOutputStream());
         document.open();
+
         List<User> list = new ArrayList<>();
         list.add(new User(1L, 23, "xiao"));
         list.add(new User(2L, 24, "xiao"));
         list.add(new User(3L, 25, "xiao"));
         list.add(new User(4L, 26, "xiao"));
         list.add(new User(5L, 27, "xiao"));
+
         for (User user : list) {
 
             PdfPTable table = new PdfPTable(3);

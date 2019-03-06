@@ -1,0 +1,21 @@
+logging:
+  level:
+    org.springframework.web: INFO
+    com.github.binarywang.demo.wx.mp: DEBUG
+    me.chanjar.weixin: DEBUG
+wx:
+  mp:
+    configs:
+      - appId: wx732e201a20897ea3
+        secret: c9d547819089dd0059bf4b39691409e1
+        token: wechat
+        aesKey:
+spring:
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+server:
+  tomcat:
+    uri-encoding: UTF-8
