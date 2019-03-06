@@ -1,7 +1,7 @@
 logging:
   level:
     org.springframework.web: INFO
-    com.github.binarywang.demo.wx.mp: DEBUG
+    com.jeiker.weixin: DEBUG
     me.chanjar.weixin: DEBUG
 wx:
   mp:
