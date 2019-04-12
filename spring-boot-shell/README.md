@@ -1,5 +1,3 @@
-
-
 # spring-boot-shell
 
 Spring Boot 创建 Spring Shell 应用.
