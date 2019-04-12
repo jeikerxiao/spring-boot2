@@ -52,8 +52,6 @@ Spring Boot 2.0 建立在 Spring Framework 5 之上，并且需要 Spring Framew
 
 # 4.数据安全
 
-* [spring-boot-jwt](https://github.com/jeikerxiao/spring-boot2/tree/master/spring-boot-jwt)：JSON Web Tokens 接口认证
-* [spring-boot-oauth2](https://github.com/jeikerxiao/spring-boot2/tree/master/spring-boot-oauth2)：OAuth2.0使用
 * [spring-boot-security](https://github.com/jeikerxiao/spring-boot2/tree/master/spring-boot-security)：security安全
 
 # 5.消息服务
