@@ -24,6 +24,7 @@ public class ZooKeeperConnection {
 
         zoo = new ZooKeeper(host, 5000, new Watcher() {
 
+            @Override
             public void process(WatchedEvent we) {
 
                 if (we.getState() == Event.KeeperState.SyncConnected) {
