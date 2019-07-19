@@ -1,0 +1,26 @@
+# url相关配置，这里配置url的基本url
+server:
+  port: 8080
+spring:
+  # 数据库相关配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 这里加上后缀用来防止mysql乱码,serverTimezone=GMT%2b8设置时区
+    url: ENC(h20YiPrvNnuuTGjlrE1RVpudMuIQAS6ZPSVo1SPiYVyLen7/TWI5rXVRkStA3MDcoVHQCmLa70wYU6Qo8wwtnsmaXa5jykD3MNhAp5SGJxHsTG5u7tflPdnNmOufyhdsYPxBGWAgibYs9R7yBfrvtwBTRbe096APd3bnG3++Yro=)
+    username: ENC(sT6BztXbJEa71eg3pPGYMQ==)
+    password: ENC(MpSZFJ9ftq+3+VUANZjr0Q==)
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  # 返回的api接口的配置，全局有效
+  jackson:
+    default-property-inclusion: non_null #如果某一个字段为null，就不再返回这个字段
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: GMT+8
+# jasypt加密的密匙
+jasypt:
+  encryptor:
+    password: EbfYkitulv73I2p0mXI50JMXoaxZTKJ7
