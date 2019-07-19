@@ -1,4 +1,3 @@
-# url相关配置，这里配置url的基本url
 server:
   port: 8080
 spring:
@@ -15,7 +14,8 @@ spring:
     show-sql: true
   # 返回的api接口的配置，全局有效
   jackson:
-    default-property-inclusion: non_null #如果某一个字段为null，就不再返回这个字段
+   # 如果某一个字段为null，就不再返回这个字段
+    default-property-inclusion: non_null
     date-format: yyyy-MM-dd HH:mm:ss
     serialization:
       write-dates-as-timestamps: false
